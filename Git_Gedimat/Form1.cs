@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//using Npgsql;
+//using NpgsqlTypes;
+
 namespace Git_Gedimat
 {
     public partial class Form1 : Form
@@ -39,6 +42,11 @@ namespace Git_Gedimat
         private void Actualiser_Click(object sender, EventArgs e)
         {
             ChargerListCli();
+        }
+
+        private void Envoyer_Click(object sender, EventArgs e)
+        {
+            DAOClients.AjouterClient(lesCli);
         }
     }
 }
