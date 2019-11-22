@@ -17,14 +17,14 @@ namespace Git_Gedimat
             // - nom de la base de données
             // instanciation d’une connexion au serveur MySQL
             NpgsqlConnection connexion;
-            connexion = new NpgsqlConnection("server=localhost; uid=admin; pwd=.Genius22.; database= GeClient");
+            connexion = new NpgsqlConnection("server=localhost;Port=5433;database=Gedimat;user id=powertom2;pwd=.Genius22.");
 
             // ouverture de la connexion
             connexion.Open();
             foreach (Client C in lesC)
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO public.res_partner(id, name, street, city, zip, phone, mobile, email, customers, property_payment_item_id) " +
-                    "VALUES (@code, @raison_soc, @rue, @ville, @cp, @tel, @fax, @email, @reglement, true, @reglement)", connexion);
+                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO public.res_partner(company_id, signup_token, name, street, city, zip, phone, mobile, email, customer, signup_type) " +
+                    "VALUES (1, @code, @raison_soc, @rue, @ville, @cp, @tel, @fax, @email, true, @reglement)", connexion);
                 cmd.Parameters.AddWithValue("@code", C.GetCode());
                 cmd.Parameters.AddWithValue("@raison_soc", C.GetRaisonSoc());
                 cmd.Parameters.AddWithValue("@rue", C.GetAdresse());
