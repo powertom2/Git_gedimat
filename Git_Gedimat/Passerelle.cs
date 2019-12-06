@@ -32,9 +32,18 @@ namespace Git_Gedimat
                         string ville = tab[4];
                         string tel = tab[5];
                         string fax = tab[6];
-                        string email = tab[7];
+                        string email = tab[7].ToLower();
                         string actif = tab[8];
                         string reglement = tab[9];
+
+                        if (tel.Contains("."))
+                        {
+                            tel = tel.Replace(".", " ");
+                        }
+                        if (tel.Contains("-"))
+                        {
+                            tel = tel.Replace("-", " ");
+                        }
 
                         // construction d'un objet Client à partir des valeurs  
                         Client c = new Client(code, raisonSoc, adresse, codePostal, ville, tel, fax, email, actif, reglement);

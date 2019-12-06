@@ -84,10 +84,19 @@ namespace Git_Gedimat
             return this.reglement;
         }
 
-        public string GetActif()
+        public bool GetActif()
         {
-            return this.actif;
+            if(this.actif == "Oui")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
+
         #endregion
     }
 }

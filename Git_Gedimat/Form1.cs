@@ -34,7 +34,7 @@ namespace Git_Gedimat
             list_cli.Items.Clear();
             foreach (Client c in this.lesCli)
             {
-                string rsCli = c.GetRaisonSoc();
+                string rsCli = c.GetCode() + " | " + c.GetRaisonSoc();
                 list_cli.Items.Add(rsCli);
             }
         }
