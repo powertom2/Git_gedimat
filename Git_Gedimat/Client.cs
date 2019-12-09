@@ -19,6 +19,7 @@ namespace Git_Gedimat
         private string email;
         private string actif;
         private string reglement;
+        private bool valide;
         #endregion
 
         #region constructeur
@@ -34,6 +35,7 @@ namespace Git_Gedimat
             this.email = unEmail;
             this.actif = unActif;
             this.reglement = unReglement;
+            bool valide = false;
         }
         #endregion
 
@@ -96,7 +98,15 @@ namespace Git_Gedimat
             }
         }
 
+        public bool GetValide()
+        {
+            return this.valide;
+        }
 
+        public void SetValide(bool uneValidite)
+        {
+            this.valide = uneValidite;
+        }
         #endregion
     }
 }
