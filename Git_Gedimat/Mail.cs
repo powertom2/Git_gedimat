@@ -20,5 +20,7 @@ namespace Git_Gedimat
         private int port = 587;
         private string sujet = "Erreur de lecture du fichier csv";
         string body = "Les clients suivants n'ont pas été ajoutés à la base";
+
+
     }
 }

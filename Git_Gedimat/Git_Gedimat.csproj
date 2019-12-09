@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mail.cs" />
     <Compile Include="DAOClients.cs" />
     <Compile Include="Passerelle.cs" />
     <Compile Include="Client.cs" />
