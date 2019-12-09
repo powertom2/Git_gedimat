@@ -16,7 +16,7 @@ namespace Git_Gedimat
         private string to;
         protected string smtpUsername = "erreur.visualstudio2@gmail.com";
         protected string smtpPasswrod = "Anthony#21042000";
-        private string host = "";
+        private string host = "smtp.gmail.com";
         private int port = 587;
         private string sujet = "Erreur de lecture du fichier csv";
         string body = "Les clients suivants n'ont pas été ajoutés à la base";
@@ -63,19 +63,7 @@ namespace Git_Gedimat
             //Enable SSL encryption
             client.EnableSsl = true;
             client.Port = this.port;
-
-            //Essaie d'envoie du mail. Montre le statu dans la console
-            try
-            {
-                Console.WriteLine("Tentative d'envoie du mail ...");
-                client.Send(message);
-                Console.WriteLine("Mail envoyé!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Le mail n'a pas été envoyé");
-                Console.WriteLine("Message d'erreur : " + ex.Message);
-            }
+            client.Send(message);
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Mail;
 
 //using Npgsql;
 //using NpgsqlTypes;
@@ -46,7 +48,26 @@ namespace Git_Gedimat
 
         private void Envoyer_Click(object sender, EventArgs e)
         {
-            DAOClients.AjouterClient(lesCli);
+            Erreur E = new Erreur(001, "Erreur de code");
+            List<Client> codeClientCheck = E.verifCode(lesCli);
+            List<Client> mailClientCheck = E.verifMail(codeClientCheck);
+            E.verifTel(mailClientCheck);
+            List<Client> clientNonValide = E.GetLesClientsNonValides();
+            List<Client> clientValide = E.GetLesClientsValides();
+            message.Text = "Tentative d'envoie du mail ...";
+            try
+            {
+                
+                Mail M = new Mail("anthony.mama@hotmail.fr", "anthony", "erreur.visualstudio2@gmail.com");
+                M.EnvoieDuMail("erreur.visualstudio2@gmail.com", clientNonValide);
+                message.Text += "\nMessage envoyé!";
+                DAOClients.AjouterClient(clientValide);
+            }
+            catch (Exception ex)
+            {
+                message.Text += "\nErreur";
+                message.Text += ex.Message;
+            }
         }
     }
 }

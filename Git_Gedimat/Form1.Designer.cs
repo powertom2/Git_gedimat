@@ -31,6 +31,7 @@
             this.Actualiser = new System.Windows.Forms.Button();
             this.list_cli = new System.Windows.Forms.ListBox();
             this.Envoyer = new System.Windows.Forms.Button();
+            this.message = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Actualiser
@@ -61,11 +62,20 @@
             this.Envoyer.UseVisualStyleBackColor = true;
             this.Envoyer.Click += new System.EventHandler(this.Envoyer_Click);
             // 
+            // message
+            // 
+            this.message.Location = new System.Drawing.Point(441, 213);
+            this.message.Multiline = true;
+            this.message.Name = "message";
+            this.message.Size = new System.Drawing.Size(327, 144);
+            this.message.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.message);
             this.Controls.Add(this.Envoyer);
             this.Controls.Add(this.list_cli);
             this.Controls.Add(this.Actualiser);
@@ -73,6 +83,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -81,6 +92,7 @@
         private System.Windows.Forms.Button Actualiser;
         private System.Windows.Forms.ListBox list_cli;
         private System.Windows.Forms.Button Envoyer;
+        private System.Windows.Forms.TextBox message;
     }
 }
 

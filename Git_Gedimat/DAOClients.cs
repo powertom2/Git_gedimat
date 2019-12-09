@@ -17,7 +17,8 @@ namespace Git_Gedimat
             // - nom de la base de données
             // instanciation d’une connexion au serveur MySQL
             NpgsqlConnection connexion;
-            connexion = new NpgsqlConnection("server=localhost;Port=5433;database=Gedimat;user id=powertom2;pwd=.Genius22.");
+            //connexion = new NpgsqlConnection("server=localhost;Port=5433;database=Gedimat;user id=powertom2;pwd=.Genius22.");
+            connexion = new NpgsqlConnection("server=localhost;Port=5435;database=GeClient;user id=vincent;pwd=rootroot");
 
             // ouverture de la connexion
             connexion.Open();
@@ -27,9 +28,10 @@ namespace Git_Gedimat
                     "VALUES (1, @code, @raison_soc, @raison_soc, @rue, @ville, @cp, @tel, @fax, @email, true, @reglement, @actif)", connexion);
                 cmd.Parameters.AddWithValue("@code", C.GetCode());
                 cmd.Parameters.AddWithValue("@raison_soc", C.GetRaisonSoc());
+                cmd.Parameters.AddWithValue("@raison_soc", C.GetRaisonSoc());
                 cmd.Parameters.AddWithValue("@rue", C.GetAdresse());
-                cmd.Parameters.AddWithValue("@cp", C.GetCodePostal());
                 cmd.Parameters.AddWithValue("@ville", C.GetTel());
+                cmd.Parameters.AddWithValue("@cp", C.GetCodePostal());
                 cmd.Parameters.AddWithValue("@tel", C.GetTel());
                 cmd.Parameters.AddWithValue("@fax", C.GetFax());
                 cmd.Parameters.AddWithValue("@email", C.GetEmail());
