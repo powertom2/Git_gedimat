@@ -80,7 +80,7 @@
             this.Controls.Add(this.list_cli);
             this.Controls.Add(this.Actualiser);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Insertion Clients";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
