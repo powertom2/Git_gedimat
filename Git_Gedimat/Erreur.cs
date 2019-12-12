@@ -12,7 +12,8 @@ namespace Git_Gedimat
         private int code;
         private string libelle;
         List<Client> lesClientsValide = new List<Client>();
-        List<Client>lesClientsNonValide = new List<Client>();
+        List<Client> lesClientsNonValide = new List<Client>();
+        List<Client> ClientMailManquant = new List<Client>();
 
         //Constructeur
         public Erreur(int unCode, string unLibelle)
@@ -22,15 +23,38 @@ namespace Git_Gedimat
         }
 
         /// <summary>
+        /// Méthode qui verifie si les entreprises sont encore en activité
+        /// </summary>
+        /// <param name="lesClients">liste de clients</param>
+        /// <returns>liste de clients dont l'activité a été vérifié</returns>
+        public List<Client> verifActif(List<Client> lesClients)
+        {
+            List<Client> ClientActifCheck = new List<Client>();
+            foreach (Client c in lesClients)
+            {
+                bool unActif = c.GetActif();
+                if (unActif == true)
+                {
+                    ClientActifCheck.Add(c);
+                }
+                else
+                {
+                    this.lesClientsNonValide.Add(c);
+                }
+            }
+            return ClientActifCheck;
+        }
+
+        /// <summary>
         /// Méthode qui vérifie que le code du client n'est pas vide. S'il ne l'est pas, elle vérifie aussi
         /// qu'il n'est pas utilisé plusieurs fois.
         /// </summary>
-        /// <param name="lesClients">liste des clients</param>
+        /// <param name="lesClients">liste des clients actif</param>
         /// <returns>liste de client dont les code est valide</returns>
-        public List<Client> verifCode(List<Client> lesClients)
+        public List<Client> verifCode(List<Client> ClientActifCheck)
         {
             List<Client> codeClientCheck = new List<Client>();
-            foreach (Client c in lesClients)
+            foreach (Client c in ClientActifCheck)
             {
                 int count = 0;
                 string unCode = c.GetCode();
@@ -40,7 +64,7 @@ namespace Git_Gedimat
                 }
                 else
                 {
-                    foreach (Client c1 in lesClients)
+                    foreach (Client c1 in ClientActifCheck)
                     {
                         string unCode1 = c1.GetCode();
                         if (unCode == unCode1)
@@ -79,9 +103,11 @@ namespace Git_Gedimat
                 c.SetValide(false);
                 int count = 0;
                 string unMail = c.GetEmail();
+                string unTel = c.GetTel();
                 if (unMail == "")
                 {
-                    this.lesClientsNonValide.Add(c);
+                    this.ClientMailManquant.Add(c);
+                    this.lesClientsValide.Add(c);
                 }
                 else
                 {
@@ -104,6 +130,10 @@ namespace Git_Gedimat
                             {
                                 c.SetValide(true);
                             }
+                        }
+                        else
+                        {
+                            this.lesClientsNonValide.Add(c);
                         }
                     }
                     else
@@ -183,6 +213,12 @@ namespace Git_Gedimat
         public List<Client> GetLesClientsNonValides()
         {
             return this.lesClientsNonValide;
+        }
+
+
+        public List<Client> GetLesClientSansMail()
+        {
+            return this.ClientMailManquant;
         }
     }
 }

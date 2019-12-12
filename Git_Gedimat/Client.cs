@@ -8,6 +8,7 @@ namespace Git_Gedimat
 {
     public class Client
     {
+        //déclaration des variables
         #region attribut
         private string code;
         private string raison_soc;
@@ -22,6 +23,7 @@ namespace Git_Gedimat
         private bool valide;
         #endregion
 
+        //constructeur
         #region constructeur
         public Client(string unCode, string uneRaison, string uneAdresse, string unCP, string uneVille, string unTel, string unFax, string unEmail, string unActif, string unReglement)
         {
@@ -39,7 +41,8 @@ namespace Git_Gedimat
         }
         #endregion
 
-        #region methode
+        //méthodes permettant de récupérer des données provenant de cette classe
+        #region methode getteur
         //Liste des récupérateur d'info
         public string GetCode()
         {
@@ -88,7 +91,7 @@ namespace Git_Gedimat
 
         public bool GetActif()
         {
-            if(this.actif == "Oui")
+            if (this.actif == "Oui")
             {
                 return true;
             }

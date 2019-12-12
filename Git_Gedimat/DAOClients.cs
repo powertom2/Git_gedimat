@@ -30,7 +30,7 @@ namespace Git_Gedimat
                 cmd.Parameters.AddWithValue("@raison_soc", C.GetRaisonSoc());
                 cmd.Parameters.AddWithValue("@raison_soc", C.GetRaisonSoc());
                 cmd.Parameters.AddWithValue("@rue", C.GetAdresse());
-                cmd.Parameters.AddWithValue("@ville", C.GetTel());
+                cmd.Parameters.AddWithValue("@ville", C.GetVille());
                 cmd.Parameters.AddWithValue("@cp", C.GetCodePostal());
                 cmd.Parameters.AddWithValue("@tel", C.GetTel());
                 cmd.Parameters.AddWithValue("@fax", C.GetFax());

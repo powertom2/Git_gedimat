@@ -31,6 +31,7 @@ namespace Git_Gedimat
             lesCli = Passerelle.ChargerLesClients();
         }
 
+        //Méthode qui affiche tous les clients dans la list-box
         private void ChargerListCli()
         {
             list_cli.Items.Clear();
@@ -41,30 +42,38 @@ namespace Git_Gedimat
             }
         }
 
+        //permet appeller la méthode ci-dessus pour afficher tous les clients à vérifier
         private void Actualiser_Click(object sender, EventArgs e)
         {
             ChargerListCli();
         }
 
+        /// <summary>
+        /// Méthode qui envoie dans BDD et envoie mail
+        /// </summary>
         private void Envoyer_Click(object sender, EventArgs e)
         {
+            //Instantiation pour l'envoie des données dans BDD et envoie du mail
             Erreur E = new Erreur(001, "Erreur de code");
-            List<Client> codeClientCheck = E.verifCode(lesCli);
+            List<Client> actifClientCheck = E.verifActif(lesCli);
+            List<Client> codeClientCheck = E.verifCode(actifClientCheck);
             List<Client> mailClientCheck = E.verifMail(codeClientCheck);
             E.verifTel(mailClientCheck);
             List<Client> clientNonValide = E.GetLesClientsNonValides();
             List<Client> clientValide = E.GetLesClientsValides();
+            List<Client> clientValideSansMail = E.GetLesClientSansMail();
             message.Text = "Tentative d'envoie du mail ...";
             try
             {
-                
+                //Envoie du mail
                 Mail M = new Mail("anthony.mama@hotmail.fr", "anthony", "erreur.visualstudio2@gmail.com");
-                M.EnvoieDuMail("erreur.visualstudio2@gmail.com", clientNonValide);
+                M.EnvoieDuMail("erreur.visualstudio2@gmail.com", clientValide, clientNonValide, clientValideSansMail);
                 message.Text += "\nMessage envoyé!";
                 DAOClients.AjouterClient(clientValide);
             }
             catch (Exception ex)
             {
+                //Récupère et affiche l'erreur pour du débugage
                 message.Text += "\nErreur";
                 message.Text += ex.Message;
             }

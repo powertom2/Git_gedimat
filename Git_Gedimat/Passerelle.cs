@@ -9,6 +9,10 @@ namespace Git_Gedimat
 {
     static class Passerelle
     {
+        /// <summary>
+        /// Méthode qui lit et récupère les données d'un fichier csv
+        /// </summary>
+        /// <returns> une liste de clients</returns>
         public static List<Client> ChargerLesClients()
         {
             // déclaration et instanciation d'une collection de Clients

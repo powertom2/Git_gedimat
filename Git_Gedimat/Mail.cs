@@ -29,6 +29,8 @@ namespace Git_Gedimat
             this.to = unReceveur;
         }
 
+        //méthodes permettant de récupérer des données provenant de cette classe
+        #region methode getteur
         public string GetFrom()
         {
             return this.from;
@@ -42,18 +44,25 @@ namespace Git_Gedimat
         {
             return this.fromname;
         }
+        #endregion
 
-        public void EnvoieDuMail(string unReceveur, List<Client> ClientNonValide)
+        /// <summary>
+        /// Méthode qui permet d'envoyer un mail
+        /// </summary>
+        /// <param name="unReceveur">le destinataire du mail</param>
+        /// <param name="ClientValide">liste des clients valide</param>
+        /// <param name="ClientNonValide">liste des clients non valide</param>
+        /// <param name="ClientMailManquant">liste de client valide mais sans mail</param>
+        public void EnvoieDuMail(string unReceveur, List<Client> ClientValide, List<Client> ClientNonValide, List<Client> ClientMailManquant)
         {
             MailMessage message = new MailMessage();
             message.From = new MailAddress(this.from, this.fromname);
             message.To.Add(new MailAddress(unReceveur));
             message.Subject = this.sujet;
             message.Body = this.body;
-            foreach(Client c in ClientNonValide)
-            {
-                message.Body += "\n" + c.GetRaisonSoc();
-            }
+            message.Body += "\nIl y a " + ClientValide.Count + " clients qui ont été insérés.";
+            message.Body += "\nIl y a " + ClientNonValide.Count + " clients qui n'ont pas été insérés.";
+            message.Body += "\nIl y a " + ClientMailManquant.Count + " client qui ont été insérés dont leur mail n'a pas été indiqué.";
 
             SmtpClient client = new SmtpClient(host);
 
