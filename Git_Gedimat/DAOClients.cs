@@ -17,8 +17,7 @@ namespace Git_Gedimat
             // - nom de la base de données
             // instanciation d’une connexion au serveur MySQL
             NpgsqlConnection connexion;
-            //connexion = new NpgsqlConnection("server=localhost;Port=5433;database=Gedimat;user id=powertom2;pwd=.Genius22.");
-            connexion = new NpgsqlConnection("server=localhost;Port=5435;database=GeClient;user id=vincent;pwd=rootroot");
+            connexion = new NpgsqlConnection("server=localhost;Port=5433;database=Gedimat;user id=powertom2;pwd=.Genius22.");
 
             // ouverture de la connexion
             connexion.Open();
