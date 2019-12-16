@@ -23,7 +23,8 @@ namespace Git_Gedimat
             connexion.Open();
             foreach (Client C in lesC)
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO public.res_partner(company_id, signup_token, name, display_name, street, city, zip, phone, mobile, email, customer, signup_type, active) " +
+                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO public.res_partner(company_id, signup_token, name, display_name, street, " +
+                    "city, zip, phone, mobile, email, customer, signup_type, active) " +
                     "VALUES (1, @code, @raison_soc, @raison_soc, @rue, @ville, @cp, @tel, @fax, @email, true, @reglement, @actif)", connexion);
                 cmd.Parameters.AddWithValue("@code", C.GetCode());
                 cmd.Parameters.AddWithValue("@raison_soc", C.GetRaisonSoc());

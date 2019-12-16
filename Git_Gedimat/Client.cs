@@ -37,7 +37,7 @@ namespace Git_Gedimat
             this.email = unEmail;
             this.actif = unActif;
             this.reglement = unReglement;
-            bool valide = false;
+            this.valide = false;
         }
         #endregion
 

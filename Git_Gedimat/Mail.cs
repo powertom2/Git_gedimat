@@ -19,7 +19,7 @@ namespace Git_Gedimat
         private string host = "smtp.gmail.com";
         private int port = 587;
         private string sujet = "Erreur de lecture du fichier csv";
-        string body = "Les clients suivants n'ont pas été ajoutés à la base";
+        string body = "Voici un récapitulatif d'insertions des clients :";
 
         //constructeur d'un objet mail
         public Mail(string unEnvoyeur, string nomEnvoyeur, string unReceveur)
