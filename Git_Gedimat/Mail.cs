@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
+using System.IO;
 
 namespace Git_Gedimat
 {
@@ -18,7 +19,7 @@ namespace Git_Gedimat
         protected string smtpPasswrod = "Anthony#21042000";
         private string host = "smtp.gmail.com";
         private int port = 587;
-        private string sujet = "Erreur de lecture du fichier csv";
+        private string sujet = "Résultat de l\'insertion";
         string body = "Voici un récapitulatif d'insertions des clients :";
 
         //constructeur d'un objet mail
@@ -63,6 +64,18 @@ namespace Git_Gedimat
             message.Body += "\nIl y a " + ClientValide.Count + " clients qui ont été insérés.";
             message.Body += "\nIl y a " + ClientNonValide.Count + " clients qui n'ont pas été insérés.";
             message.Body += "\nIl y a " + ClientMailManquant.Count + " client qui ont été insérés dont leur mail n'a pas été indiqué.";
+            message.Body += "\nPour plus d'informations, veuillez trouver, ci-joint, la liste des clients non insérés et la raison du refus.";
+
+            //Création édition du fichier
+            StreamWriter file = new StreamWriter("C:/Users/PC/Desktop/projet 2/Git_gedimat/Git_gedimat/bin/Debug/client_non_valide.csv");
+            file.Write("Raison du refus;Nom de l'entreprise");
+            foreach (Client c in ClientNonValide)
+            {
+                file.Write("\n" + c.GetRefus() + ";" + c.GetRaisonSoc());
+            }
+            file.Close();
+            Attachment fichier = new Attachment("client_non_valide.csv");
+            message.Attachments.Add(fichier);
 
             SmtpClient client = new SmtpClient(host);
 

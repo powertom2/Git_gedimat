@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Npgsql;
+using MySql.Data.MySqlClient;
 
 namespace Git_Gedimat
 {
@@ -16,18 +16,16 @@ namespace Git_Gedimat
             // - identifiants de connexion
             // - nom de la base de données
             // instanciation d’une connexion au serveur MySQL
-            NpgsqlConnection connexion;
-            connexion = new NpgsqlConnection("server=localhost;Port=5433;database=Gedimat;user id=powertom2;pwd=.Genius22.");
+            MySqlConnection connexion;
+            connexion = new MySqlConnection("server=localhost;database=negomat;user id=root;pwd=");
 
             // ouverture de la connexion
             connexion.Open();
             foreach (Client C in lesC)
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO public.res_partner(company_id, signup_token, name, display_name, street, " +
-                    "city, zip, phone, mobile, email, customer, signup_type, active) " +
-                    "VALUES (1, @code, @raison_soc, @raison_soc, @rue, @ville, @cp, @tel, @fax, @email, true, @reglement, @actif)", connexion);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO client(code, raison_soc, rue, ville, code_postal, tel, fax, email, reglement, actif) " +
+                    "VALUES (@code, @raison_soc, @rue, @ville, @cp, @tel, @fax, @email, @reglement, @actif)", connexion);
                 cmd.Parameters.AddWithValue("@code", C.GetCode());
-                cmd.Parameters.AddWithValue("@raison_soc", C.GetRaisonSoc());
                 cmd.Parameters.AddWithValue("@raison_soc", C.GetRaisonSoc());
                 cmd.Parameters.AddWithValue("@rue", C.GetAdresse());
                 cmd.Parameters.AddWithValue("@ville", C.GetVille());

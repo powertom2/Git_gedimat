@@ -48,6 +48,10 @@ namespace Git_Gedimat
                         {
                             tel = tel.Replace("-", " ");
                         }
+                        if (codePostal.Length == 4)
+                        {
+                            codePostal = "0" + codePostal;
+                        }
 
                         // construction d'un objet Client à partir des valeurs  
                         Client c = new Client(code, raisonSoc, adresse, codePostal, ville, tel, fax, email, actif, reglement);

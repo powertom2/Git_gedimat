@@ -21,6 +21,7 @@ namespace Git_Gedimat
         private string actif;
         private string reglement;
         private bool valide;
+        private string raison_refus = "";
         #endregion
 
         //constructeur
@@ -109,6 +110,16 @@ namespace Git_Gedimat
         public void SetValide(bool uneValidite)
         {
             this.valide = uneValidite;
+        }
+
+        public string GetRefus()
+        {
+            return this.raison_refus;
+        }
+
+        public void SetRefus(string unRefus)
+        {
+            this.raison_refus = unRefus;
         }
         #endregion
     }

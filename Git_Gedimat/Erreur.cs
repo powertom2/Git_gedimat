@@ -39,6 +39,7 @@ namespace Git_Gedimat
                 }
                 else
                 {
+                    c.SetRefus("Client non actif");
                     this.lesClientsNonValide.Add(c);
                 }
             }
@@ -60,6 +61,7 @@ namespace Git_Gedimat
                 string unCode = c.GetCode();
                 if(unCode == "")
                 {
+                    c.SetRefus("Code du client vide");
                     this.lesClientsNonValide.Add(c);
                 }
                 else
@@ -78,6 +80,7 @@ namespace Git_Gedimat
                     }
                     else
                     {
+                        c.SetRefus("Code de client en double");
                         this.lesClientsNonValide.Add(c);
                     }
                 }
@@ -133,11 +136,13 @@ namespace Git_Gedimat
                         }
                         else
                         {
+                            c.SetRefus("Mail du client en double");
                             this.lesClientsNonValide.Add(c);
                         }
                     }
                     else
                     {
+                        c.SetRefus("Format du mail non valide");
                         this.lesClientsNonValide.Add(c);
                     }
                     if (c.GetValide() == true)
@@ -163,6 +168,7 @@ namespace Git_Gedimat
                 string unTel = c.GetTel();
                 if (unTel == "")
                 {
+                    c.SetRefus("Client sans téléphone");
                     this.lesClientsNonValide.Add(c);
                 }
                 else
@@ -187,6 +193,7 @@ namespace Git_Gedimat
                     }
                     else
                     {
+                        c.SetRefus("Format du numéro de téléphone non valide");
                         this.lesClientsNonValide.Add(c);
                     }
                     if (c.GetValide() == true)
